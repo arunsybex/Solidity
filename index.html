@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Test</title>
+    <script src="../node_modules/web3/dist/web3.min.js"></script>
+  </head>
+  <body>
+    <input id="name" type="text" />
+    <button id="click">Mine</button>
+    <pre id="hashresult"></pre>
+  </body>
+<script>
+        var web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+        web3.eth.defaultAccount = web3.eth.accounts[0];
+        var sybexcon = web3.eth.contract([
+      {
+        "constant": true,
+        "inputs": [],
+        "name": "seename",
+        "outputs": [
+          {
+            "name": "",
+            "type": "bytes32"
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "constant": false,
+        "inputs": [
+          {
+            "name": "_na",
+            "type": "bytes32"
+          }
+        ],
+        "name": "setname",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+      }
+    ]);
+
+        var sybex = sybexcon.at('0x3f03b662b00297d99ef6462efd8ea4bb40089539');
+
+     var button = document.getElementById('click');
+     var input = document.getElementById('name');
+     var output = document.getElementById('hashresult');
+
+     button.addEventListener('click',function(){
+        sybex.setname(input.value);
+        output.innerText = sybex.seename();
+     });
+
+</script>
+</html>
