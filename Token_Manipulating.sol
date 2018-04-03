@@ -19,7 +19,7 @@ contract Token{
     }
     
     function balanceOftoken(address _token) public view returns(uint){
-        return ERC20(_token).balanceOf(_token);
+        return ERC20(_token).balanceOf(msg.sender);
     }
     
     // before this You need to run approve function on your token contract...
