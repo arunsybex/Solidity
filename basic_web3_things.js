@@ -8,4 +8,20 @@
       console.log(balance)
       $("#balance").val(balance.trim())
     });
-  }
+  },
+
+token_name : function(){
+  MetaCoin.deployed().then(function(f) {
+    f.name.call().then(function(f) {
+      console.log(f)
+    })
+  })
+},
+token_symbol : function(){
+  MetaCoin.deployed().then(function(f) {
+    f.synbol.call().then(function(f) {
+      console.log(f)
+    })
+  })
+}
+
